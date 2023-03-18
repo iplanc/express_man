@@ -1,7 +1,7 @@
 <!--
  * @Author: PlanC
  * @Date: 2023-03-17 11:26:23
- * @LastEditTime: 2023-03-17 17:14:58
+ * @LastEditTime: 2023-03-18 11:17:03
  * @FilePath: \express_man\src\views\LoginView.vue
 -->
 <template>
@@ -30,29 +30,31 @@ export default {
   },
   created() {
     if (sessionStorage.getItem("username") != null) {
-      this.$router.push("/main")
+      this.$router.push("/recv")
     }
   },
   methods: {
     login: function() {
       var that = this;
-      this.axios
-        .get("http://localhost/api/test.php", {
-          params: {
-            username: that.username,
-            password: that.password,
-          }
-        })
-        .then(function (response) {
-          console.log(response.data)
-          if (response.data.result == true) {
-            sessionStorage.setItem("username", response.data.param.username)
-            that.$router.push("/main")
-          }
-        })
-        .catch(function (err) {
-          console.log(err)
-        })
+      this.axios({
+        url: "http://localhost/api/test.php",
+        method: "POST",
+        data: {
+          username: that.username,
+          password: that.password,
+        },
+        headers: {"Content-Type": "application/x-www-form-urlencoded"}
+      })
+      .then(function (response) {
+        console.log(response.data)
+        if (response.data.result == true) {
+          sessionStorage.setItem("username", response.data.param.username)
+          that.$router.push("/recv")
+        }
+      })
+      .catch(function (err) {
+        console.log(err)
+      })
     }
   },
 }

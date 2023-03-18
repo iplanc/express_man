@@ -1,20 +1,24 @@
 <!--
  * @Author: PlanC
  * @Date: 2023-03-17 16:51:17
- * @LastEditTime: 2023-03-17 17:23:52
+ * @LastEditTime: 2023-03-18 16:14:43
  * @FilePath: \express_man\src\views\MainView.vue
 -->
 <template>
   <nav>
-    <nav_component :username="username"></nav_component>
+    <navComponent :username="username"></navComponent>
   </nav>
   <el-divider />
   <router-view />
+  <el-button-group class="newEx">
+    <el-button type="primary"><el-icon><Upload /></el-icon></el-button>
+    <el-button type="primary"><el-icon><Plus /></el-icon></el-button>
+  </el-button-group>
 </template>
 
 <script>
 // @ is an alias to /src
-import nav_component from '@/components/nav_component.vue'
+import navComponent from '@/components/navComponent.vue'
 
 export default {
   name: 'HomeView',
@@ -30,19 +34,12 @@ export default {
     }
   },
   components: {
-    nav_component
+    navComponent
   },
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Genshin', Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: var(--ep-text-color-primary);
-}
-
 nav a {
   font-weight: bold;
   color: var(--el-color-info);
@@ -50,5 +47,11 @@ nav a {
 
 nav a.router-link-exact-active {
   color: var(--el-color-primary);
+}
+
+.newEx {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
 }
 </style>
