@@ -1,14 +1,13 @@
 <!--
  * @Author: PlanC
  * @Date: 2023-03-17 16:51:17
- * @LastEditTime: 2023-03-18 16:14:43
+ * @LastEditTime: 2023-03-19 10:10:36
  * @FilePath: \express_man\src\views\MainView.vue
 -->
 <template>
   <nav>
     <navComponent :username="username"></navComponent>
   </nav>
-  <el-divider />
   <router-view />
   <el-button-group class="newEx">
     <el-button type="primary"><el-icon><Upload /></el-icon></el-button>
@@ -28,7 +27,6 @@ export default {
     }
   },
   created() {
-    console.log(sessionStorage.getItem("username").username)
     if (sessionStorage.getItem("username") == null) {
       this.$router.push("/")
     }
