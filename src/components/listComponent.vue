@@ -1,7 +1,7 @@
 <!--
  * @Author: PlanC
  * @Date: 2023-03-19 10:15:03
- * @LastEditTime: 2023-03-19 10:40:47
+ * @LastEditTime: 2023-03-19 11:15:56
  * @FilePath: \express_man\src\components\listComponent.vue
 -->
 
@@ -35,10 +35,12 @@
 
 <script>
 import cardComponent from "@/components/cardComponent.vue"
+import { ElMessage } from 'element-plus'
 
 export default {
   props: {
     api: String,
+    param: String,
   },
   data() {
     return {
@@ -53,18 +55,20 @@ export default {
       method: "POST",
       data: {
         username: sessionStorage.getItem("username"),
+        param: that.param,
       },
       headers: {"Content-Type": "application/x-www-form-urlencoded"}
     })
     .then(function (response) {
-      console.log(response.data)
       that.lists = response.data
       setTimeout(() => {
         that.arrived_loading = false
       }, Math.floor(Math.random() * (2000 - 1000)) + 1000)
     })
     .catch(function (err) {
-      console.log(err)
+      ElMessage({
+        message: err
+      })
     })
   },
   components: {

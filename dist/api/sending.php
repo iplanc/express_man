@@ -9,7 +9,7 @@
     die("连接失败：" . $conn->connect_error);
   }
   else {
-    $sql = "select * from express_arrived where send='" . $_POST['username'] . "'";
+    $sql = "select * from express_" . $_POST["param"] . " where send='" . $_POST['username'] . "'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {

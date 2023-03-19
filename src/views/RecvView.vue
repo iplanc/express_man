@@ -5,13 +5,13 @@
         <template #title>
           <h1>已送达</h1>
         </template>
-        <listComponent :api="arrived_api"></listComponent>
+        <listComponent :api="api" param="arrived"></listComponent>
       </el-collapse-item>
       <el-collapse-item name="onroad">
         <template #title>
           <h1>派送中</h1>
         </template>
-        <listComponent :api="api"></listComponent>
+        <listComponent :api="api" param="onroad"></listComponent>
       </el-collapse-item>
     </el-collapse>
   </div>
@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       activeNames: "arrived",
-      arrived_api: "//localhost/api/arrived.php"
+      api: "//localhost/api/arrived.php"
     }
   },
   components: {
